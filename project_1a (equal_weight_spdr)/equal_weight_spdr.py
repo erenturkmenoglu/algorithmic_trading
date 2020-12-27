@@ -5,13 +5,13 @@
 # 
 # ## Introduction & Library Imports
 # 
-# The S&P 500 is the world's most popular stock market index. The largest fund that is benchmarked to this index is the SPDR® S&P 500® ETF Trust. It has more than US$250 billion of assets under management.
+# The S&P 500 is the world's most popular stock market index. The largest fund that is benchmarked to this index is the SPDR® S&P 500® ETF Trust.
 # 
-# The goal of this section of the course is to create a Python script that will accept the value of your portfolio and tell you how many shares of each S&P 500 constituent you should purchase to get an equal-weight version of the index fund.
+# The goal of this project is to create a Python script that will accept the value of your portfolio and tell you how many shares of each S&P 500 constituent you should purchase to get an equal-weight version of the index fund.
 # 
 # ## Library Imports
 # 
-# The first thing we need to do is import the open-source software libraries that we'll be using in this tutorial.
+# The first thing we need to do is to import the open-source software libraries that we'll be using in this tutorial.
 
 # In[1]:
 
@@ -29,11 +29,7 @@ import math
 # 
 # These constituents change over time, so in an ideal world you would connect directly to the index provider (Standard & Poor's) and pull their real-time constituents on a regular basis.
 # 
-# Paying for access to the index provider's API is outside of the scope of this course. 
-# 
 # There's a static version of the S&P 500 constituents available here. [Click this link to download them now](https://drive.google.com/file/d/1ZJSpbY69DVckVZlO9cC6KkgfSufybcHN/view?usp=sharing). Move this file into the `starter-files` folder so it can be accessed by other files in that directory.
-# 
-# Now it's time to import these stocks to our Jupyter Notebook file.
 
 # In[2]:
 
@@ -46,11 +42,11 @@ stocks
 
 # ## Acquiring an API Token
 # 
-# Now it's time to import our IEX Cloud API token. This is the data provider that we will be using throughout this course.
+# Now it's time to import our IEX Cloud API token. This is the data provider that we will be using.
 # 
 # API tokens (and other sensitive information) should be stored in a `secrets.py` file that doesn't get pushed to your local Git repository. We'll be using a sandbox API token in this course, which means that the data we'll use is randomly-generated and (more importantly) has no cost associated with it.
 # 
-# [Click here](http://nickmccullum.com/algorithmic-trading-python/secrets.py) to download your `secrets.py` file. Move the file into the same directory as this Jupyter Notebook before proceeding.
+# [Click here](http://nickmccullum.com/algorithmic-trading-python/secrets.py) to download your `secrets.py` file. Move the file into the same directory as this Jupyter Notebook.
 
 # In[3]:
 
@@ -72,9 +68,9 @@ from secrets import IEX_CLOUD_API_TOKEN
 # In[4]:
 
 
-symbol = 'AAPL'
-api_url = f'https://sandbox.iexapis.com/stable/stock/{symbol}/quote/?token={IEX_CLOUD_API_TOKEN}'
-data = requests.get(api_url).json()
+#symbol = 'AAPL'
+#api_url = f'https://sandbox.iexapis.com/stable/stock/{symbol}/quote/?token={IEX_CLOUD_API_TOKEN}'
+#data = requests.get(api_url).json()
 
 
 # ## Parsing Our API Call
@@ -86,8 +82,8 @@ data = requests.get(api_url).json()
 # In[5]:
 
 
-price = data['latestPrice']
-market_cap = data['marketCap']
+#price = data['latestPrice']
+#market_cap = data['marketCap']
 
 
 # ## Adding Our Stocks Data to a Pandas DataFrame
@@ -105,7 +101,7 @@ final_df
 # In[7]:
 
 
-final_df.append(pd.Series([symbol, price, market_cap, 'N/A'], index = my_columns), ignore_index=True)
+#final_df.append(pd.Series([symbol, price, market_cap, 'N/A'], index = my_columns), ignore_index=True)
 
 
 # ## Looping Through The Tickers in Our List of Stocks
