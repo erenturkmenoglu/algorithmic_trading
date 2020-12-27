@@ -53,7 +53,6 @@ stocks
 
 from secrets import IEX_CLOUD_API_TOKEN
 
-
 # ## Making Our First API Call
 # 
 # Now it's time to structure our API calls to IEX cloud. 
@@ -203,7 +202,7 @@ except ValueError:
 
 position_size = val/len(final_df.index)
 for i in range(0, len(final_df.index)):
-    final_df.loc[i, 'Number of Shares to Buy'] = math.floor(position_size/final_df.loc[i, 'Stock Price'])
+    final_df.loc[i, 'Number of Shares to Buy'] = position_size/final_df.loc[i, 'Stock Price']
 final_df
 
 #number_of_apple_shares = position_size/500
