@@ -210,7 +210,7 @@ portfolio_size
 
 position_size = (final_df['Market Capitalization']/final_df['Market Capitalization'].sum()) * float(portfolio_size)
 for i in range(0, len(final_df.index)):
-    final_df.loc[i, 'Number of Shares to Buy'] = math.floor(position_size[i]/final_df.loc[i, 'Stock Price'])
+    final_df.loc[i, 'Number of Shares to Buy'] = position_size[i]/final_df.loc[i, 'Stock Price']
 final_df
 
 
@@ -264,9 +264,9 @@ dollar_format = writer.book.add_format(
         'border' : 1
     }
 )
-integer_format = writer.book.add_format(
+float_format = writer.book.add_format(
     {
-        'num_format' : '0',
+        'num_format' : '0.00',
         'font_color' : font_color,
         'bg_color' : background_color,
         'border' : 1
@@ -300,7 +300,7 @@ integer_format = writer.book.add_format(
 writer.sheets['Recommended Trades'].write('A1', 'Ticker', string_format)
 writer.sheets['Recommended Trades'].write('B1', 'Stock Price', dollar_format)
 writer.sheets['Recommended Trades'].write('C1', 'Market Capitalization', dollar_format)
-writer.sheets['Recommended Trades'].write('D1', 'Number of Shares to Buy', integer_format)
+writer.sheets['Recommended Trades'].write('D1', 'Number of Shares to Buy', float_format)
 
 
 # This code works, but it violates the software principle of "Don't Repeat Yourself". 
@@ -314,7 +314,7 @@ column_formats = {
     'A': ['Ticker', string_format],
     'B': ['Stock Price', dollar_format],
     'C': ['Market Capitalization', dollar_format],
-    'D': ['Number of Shares to Buy', integer_format]
+    'D': ['Number of Shares to Buy', float_format]
 }
 
 for column in column_formats.keys():
